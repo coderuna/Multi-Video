@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Watch - LuxeGadgets</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Poppins', sans-serif; margin: 0; background-color: #f9fafb; color: #1f2937; }
+        
+        /* Navbar (Same as Home) */
+        nav { display: flex; justify-content: space-between; align-items: center; padding: 20px 5%; background: white; box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
+        .logo { font-size: 1.5rem; font-weight: 700; }
+        .logo a { text-decoration: none; color: #111; }
+
+        /* Main Layout */
+        .container { max-width: 1100px; margin: 50px auto; padding: 0 20px; display: grid; grid-template-columns: 1.2fr 1fr; gap: 50px; align-items: start; }
+        
+        /* Image Section */
+        .product-gallery { position: relative; }
+        .main-img { width: 100%; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.08); transition: transform 0.3s; }
+        .main-img:hover { transform: scale(1.02); }
+
+        /* Details Section */
+        .product-info h1 { font-size: 2.5rem; margin-bottom: 10px; line-height: 1.1; }
+        .price { font-size: 2rem; font-weight: 700; color: #111; margin-bottom: 20px; display: block; }
+        .rating { color: #fbbf24; margin-bottom: 20px; font-size: 1.1rem; }
+        .rating span { color: #9ca3af; font-size: 0.9rem; margin-left: 5px; }
+
+        .description { line-height: 1.7; color: #4b5563; margin-bottom: 30px; }
+
+        /* Options */
+        .label { font-weight: 600; margin-bottom: 10px; display: block; }
+        .color-options { display: flex; gap: 10px; margin-bottom: 30px; }
+        .color-circle { width: 30px; height: 30px; border-radius: 50%; border: 2px solid transparent; cursor: pointer; transition: 0.2s; }
+        .color-circle.selected { border-color: #111; transform: scale(1.1); }
+        
+        /* Actions */
+        .action-row { display: flex; gap: 20px; margin-top: 30px; }
+        .qty-selector { display: flex; border: 1px solid #ddd; border-radius: 8px; overflow: hidden; height: 50px; width: 120px; }
+        .qty-btn { width: 40px; border: none; background: white; cursor: pointer; font-size: 1.2rem; }
+        .qty-btn:hover { background: #f3f4f6; }
+        .qty-input { width: 40px; text-align: center; border: none; outline: none; font-weight: 600; }
+
+        .btn-buy { 
+            flex: 1; 
+            background: #111; 
+            color: white; 
+            border: none; 
+            border-radius: 8px; 
+            font-size: 1.1rem; 
+            font-weight: 600; 
+            cursor: pointer; 
+            transition: opacity 0.3s; 
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .btn-buy:hover { opacity: 0.9; }
+
+        /* Features List */
+        .features { margin-top: 40px; border-top: 1px solid #e5e7eb; padding-top: 20px; }
+        .features ul { padding-left: 20px; color: #4b5563; }
+        .features li { margin-bottom: 8px; }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .container { grid-template-columns: 1fr; gap: 30px; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="logo"><a href="index.html">LuxeGadgets.</a></div>
+        <a href="index.html" style="font-weight: 600;">⬅ Back to Shop</a>
+    </nav>
+
+    <div class="container">
+        <!-- Left: Image -->
+        <div class="product-gallery">
+            <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=800&q=80" alt="Watch" class="main-img">
+        </div>
+
+        <!-- Right: Info -->
+        <div class="product-info">
+            <div class="rating">★★★★☆ <span>(142 Reviews)</span></div>
+            <h1>Silver Smart Watch Series 5</h1>
+            <span class="price">$120.00</span>
+            
+            <p class="description">
+                Experience the perfect blend of style and functionality. This premium smart watch features a crystal-clear retina display, all-day battery life, and advanced health monitoring sensors.
+            </p>
+
+            <!-- Color Selection -->
+            <div>
+                <span class="label">Color</span>
+                <div class="color-options">
+                    <div class="color-circle selected" style="background: #e5e7eb;"></div> <!-- Silver -->
+                    <div class="color-circle" style="background: #111;"></div> <!-- Black -->
+                    <div class="color-circle" style="background: #e74c3c;"></div> <!-- Red -->
+                </div>
+            </div>
+
+            <!-- Quantity & Buy Button -->
+            <div class="action-row">
+                <div class="qty-selector">
+                    <button class="qty-btn" onclick="decreaseQty()">-</button>
+                    <input type="text" value="1" class="qty-input" id="qty" readonly>
+                    <button class="qty-btn" onclick="increaseQty()">+</button>
+                </div>
+                <a href="checkout4.html" class="btn-buy">Checkout Now</a>
+            </div>
+
+            <!-- Features -->
+            <div class="features">
+                <span class="label">Key Features:</span>
+                <ul>
+                    <li>Water Resistance up to 50m</li>
+                    <li>Always-on Retina Display</li>
+                    <li>Heart Rate & SpO2 Monitoring</li>
+                    <li>Compatible with iOS & Android</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function increaseQty() {
+            let input = document.getElementById('qty');
+            let value = parseInt(input.value);
+            input.value = value + 1;
+        }
+        function decreaseQty() {
+            let input = document.getElementById('qty');
+            let value = parseInt(input.value);
+            if(value > 1) input.value = value - 1;
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout - Smart Watch</title>
+    <style>
+        /* Global Styles */
+        * { box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; margin: 0; padding: 0; display: flex; flex-direction: column; min-height: 100vh; }
+        
+        /* Layout Structure */
+        .container { display: flex; flex-wrap: wrap; height: 100vh; }
+        
+        /* Left Column (Form) */
+        .left-column { flex: 1 1 55%; padding: 50px 8%; background: white; overflow-y: auto; }
+        
+        /* Right Column (Order Summary) */
+        .right-column { flex: 1 1 45%; padding: 50px 8%; background: #fafafa; border-left: 1px solid #e1e1e1; order: 2; }
+        
+        /* Typography & Elements */
+        h2 { font-weight: 500; color: #333; margin-bottom: 20px; }
+        h4 { margin-top: 0; color: #333; }
+        .breadcrumb { font-size: 0.85rem; color: #737373; margin-bottom: 20px; }
+        .breadcrumb span { margin: 0 5px; }
+        .breadcrumb .active { color: #333; font-weight: 600; }
+
+        /* Form Styling */
+        .form-section { margin-bottom: 30px; }
+        .form-row { display: flex; gap: 15px; margin-bottom: 15px; }
+        .form-group { width: 100%; }
+        
+        label { display: block; font-size: 0.85rem; color: #555; margin-bottom: 5px; font-weight: 500; }
+        input, select { width: 100%; padding: 12px; border: 1px solid #d9d9d9; border-radius: 5px; font-size: 1rem; transition: 0.2s; }
+        input:focus { border-color: #333; outline: none; box-shadow: 0 0 0 1px #333; }
+
+        /* Payment Options */
+        .payment-box { border: 1px solid #d9d9d9; border-radius: 5px; overflow: hidden; }
+        .payment-option { padding: 15px; border-bottom: 1px solid #d9d9d9; display: flex; align-items: center; cursor: pointer; }
+        .payment-option:last-child { border-bottom: none; }
+        .payment-option input { width: auto; margin-right: 10px; }
+        
+        /* Order Summary Items */
+        .product-item { display: flex; align-items: center; margin-bottom: 20px; }
+        .product-img-wrapper { position: relative; width: 64px; height: 64px; border: 1px solid #e1e1e1; border-radius: 8px; background: white; }
+        .product-img { width: 100%; height: 100%; object-fit: cover; border-radius: 8px; }
+        .badge { position: absolute; top: -8px; right: -8px; background: #666; color: white; border-radius: 50%; width: 20px; height: 20px; font-size: 0.75rem; display: flex; align-items: center; justify-content: center; }
+        .product-info { flex: 1; padding-left: 15px; }
+        .product-name { font-weight: 600; font-size: 0.95rem; color: #333; }
+        .product-price { font-weight: 600; color: #333; }
+
+        /* Totals */
+        .totals { margin-top: 30px; border-top: 1px solid #e1e1e1; padding-top: 20px; }
+        .total-row { display: flex; justify-content: space-between; margin-bottom: 10px; color: #555; font-size: 0.9rem; }
+        .final-total { font-size: 1.2rem; font-weight: 700; color: #333; margin-top: 15px; border-top: 1px solid #e1e1e1; padding-top: 20px; }
+
+        /* Buttons */
+        .btn-submit { width: 100%; padding: 18px; background: #1a1a1a; color: white; border: none; border-radius: 5px; font-size: 1.1rem; cursor: pointer; font-weight: 600; margin-top: 20px; }
+        .btn-submit:hover { opacity: 0.9; }
+        .return-link { display: block; text-align: center; margin-top: 20px; color: #1a1a1a; text-decoration: none; font-size: 0.9rem; }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .container { flex-direction: column; height: auto; }
+            .right-column { order: 1; border-left: none; border-bottom: 1px solid #e1e1e1; background: #fafafa; padding: 30px 5%; }
+            .left-column { order: 2; padding: 30px 5%; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        
+        <!-- RIGHT COLUMN: Order Summary (Shows first on Mobile) -->
+        <div class="right-column">
+            <div class="product-item">
+                <div class="product-img-wrapper">
+                    <!-- Real Image -->
+                    <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=800&q=80" alt="Watch" class="product-img">
+                    <div class="badge">1</div>
+                </div>
+                <div class="product-info">
+                    <div class="product-name">Silver Smart Watch</div>
+                    <div style="font-size: 0.85rem; color: #777;">Strap: Leather</div>
+                </div>
+                <div class="product-price">$120.00</div>
+            </div>
+
+            <div style="display:flex; gap:10px; margin-bottom:20px;">
+                <input type="text" placeholder="Discount code" style="padding:10px;">
+                <button style="padding:10px 20px; background:#e1e1e1; border:none; border-radius:5px; cursor:pointer;">Apply</button>
+            </div>
+
+            <div class="totals">
+                <div class="total-row">
+                    <span>Subtotal</span>
+                    <span>$120.00</span>
+                </div>
+                <div class="total-row">
+                    <span>Shipping</span>
+                    <span>Free</span>
+                </div>
+                <div class="total-row final-total">
+                    <span>Total</span>
+                    <span>$120.00</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- LEFT COLUMN: Form -->
+        <div class="left-column">
+            <div style="margin-bottom: 20px;">
+                <h1 style="margin:0; font-size:1.5rem;">Gadget Store</h1>
+                <div class="breadcrumb">Cart <span>></span> Information <span>></span> <span class="active">Payment</span></div>
+            </div>
+
+            <form onsubmit="placeOrder(event)">
+                <div class="form-section">
+                    <h4>Contact Information</h4>
+                    <input type="email" placeholder="Email address" required style="margin-bottom:10px;">
+                    <div style="display:flex; align-items:center;">
+                        <input type="checkbox" id="news" style="width:auto; margin-right:10px;">
+                        <label for="news" style="margin:0; display:inline;">Email me with news and offers</label>
+                    </div>
+                </div>
+
+                <div class="form-section">
+                    <h4>Shipping Address</h4>
+                    <div class="form-group" style="margin-bottom:15px;">
+                        <select>
+                            <option>United States</option>
+                            <option>Bangladesh</option>
+                            <option>United Kingdom</option>
+                            <option>Canada</option>
+                        </select>
+                    </div>
+                    <div class="form-row">
+                        <input type="text" placeholder="First name" required>
+                        <input type="text" placeholder="Last name" required>
+                    </div>
+                    <input type="text" placeholder="Address" required style="margin-bottom:15px;">
+                    <input type="text" placeholder="Apartment, suite, etc. (optional)" style="margin-bottom:15px;">
+                    <div class="form-row">
+                        <input type="text" placeholder="City" required>
+                        <input type="text" placeholder="Postcode" required>
+                    </div>
+                    <input type="tel" placeholder="Phone" required>
+                </div>
+
+                <div class="form-section">
+                    <h4>Payment</h4>
+                    <p style="font-size:0.85rem; color:#666; margin-bottom:10px;">All transactions are secure and encrypted.</p>
+                    <div class="payment-box">
+                        <label class="payment-option">
+                            <input type="radio" name="payment" checked>
+                            <span style="font-weight:600;">Credit Card</span>
+                            <span style="margin-left:auto; color:#999;">Visa / MC</span>
+                        </label>
+                        <label class="payment-option">
+                            <input type="radio" name="payment">
+                            <span style="font-weight:600;">PayPal</span>
+                            <span style="margin-left:auto; color:#003087;">PAYPAL</span>
+                        </label>
+                        <label class="payment-option">
+                            <input type="radio" name="payment">
+                            <span style="font-weight:600;">Cash on Delivery (COD)</span>
+                        </label>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn-submit">Pay Now</button>
+                <a href="product1.html" class="return-link">Return to cart</a>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        function placeOrder(event) {
+            event.preventDefault();
+            // এখানে আপনি প্রসেসিং অ্যানিমেশন যোগ করতে পারেন
+            const btn = document.querySelector('.btn-submit');
+            btn.innerText = "Processing...";
+            btn.style.opacity = "0.7";
+            
+            setTimeout(() => {
+                alert("Order confirmed! Thank you for shopping with us.");
+                window.location.href = "index.html";
+            }, 1500);
+        }
+    </script>
+</body>
+</html>
